@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcdae13hoit18"]
+
+[sub_resource type="GDScript" id="GDScript_607q8"]
+script/source = "extends Button
+
+@export_file('*.tscn') var scene
+
+func _on_pressed():
+	if scene:
+		get_tree().change_scene_to_file(scene)
+"
+
+[node name="Scene Swither Button" type="Button"]
+script = SubResource("GDScript_607q8")
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

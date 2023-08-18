@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://js3kqnt10c66"]
+
+[ext_resource type="PackedScene" uid="uid://cffxvunwl3qd1" path="res://Scenes/Tilemap/Tilemap Items/Templates/Grouped Collision Item.tscn" id="1_bvlvu"]
+[ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="1_ha4f0"]
+
+[sub_resource type="GDScript" id="GDScript_egwmt"]
+script/source = "extends GroupedCollisionTilemapItem
+
+func entered():
+	print('Trampolin')
+	EventBus.emitEvent('trampolin')
+"
+
+[node name="Grouped Collision Item" instance=ExtResource("1_bvlvu")]
+script = SubResource("GDScript_egwmt")
+id = "inversions_block"
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("1_ha4f0")
+hframes = 16
+vframes = 16
+frame = 105
+
+[node name="Area2D" parent="." index="1"]
+collision_layer = 0
+collision_mask = 2

@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=8 format=3 uid="uid://cufwmfj0me60d"]
+[gd_resource type="TileSet" load_steps=12 format=3 uid="uid://cufwmfj0me60d"]
 
 [ext_resource type="PackedScene" uid="uid://bsi7eyvpqnntn" path="res://Scenes/Tilemap/Tilemap Items/Spike.tscn" id="1_jfvoo"]
-[ext_resource type="PackedScene" uid="uid://cu2ly721qo4ki" path="res://Scenes/Tilemap/Tilemap Items/Inversion Block.tscn" id="2_fb878"]
+[ext_resource type="PackedScene" uid="uid://71iy28nqjk1m" path="res://Scenes/Tilemap/Tilemap Items/Inversion Block.tscn" id="2_fb878"]
 [ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="3_gmtxo"]
+[ext_resource type="PackedScene" uid="uid://js3kqnt10c66" path="res://Scenes/Tilemap/Tilemap Items/Trampolin.tscn" id="3_m1j82"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_vb165"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0)
@@ -10,10 +11,50 @@ tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 2
 [sub_resource type="TileMapPattern" id="TileMapPattern_eto3y"]
 tile_data = PackedInt32Array(0, 1, 9, 65536, 1, 9, 131072, 1, 9, 196608, 1, 9, 4, 1, 9, 65540, 1, 9, 131076, 1, 9, 196612, 1, 9, 8, 1, 9, 65544, 1, 9, 131080, 1, 9, 196616, 1, 9)
 
+[sub_resource type="GDScript" id="GDScript_8ubvv"]
+script/source = "extends Node2D
+
+var sleeping = false
+
+func _ready():
+	add_to_group('inversion_blocks')
+
+func _on_area_2d_body_entered(body):
+	if not sleeping:
+		EventBus.emitEvent('level:invert_gravity')
+		get_tree().call_group(\"inversion_blocks\", \"sleep\")
+
+func _on_area_2d_body_exited(body):
+	get_tree().call_group(\"inversion_blocks\", \"wake_up\")
+
+func sleep():
+	sleeping = true
+	
+func wake_up():
+	sleeping = false
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc46s"]
+
+[sub_resource type="PackedScene" id="PackedScene_dnub8"]
+_bundled = {
+"conn_count": 2,
+"conns": PackedInt32Array(1, 0, 15, 14, 2, 0, 0, 1, 0, 17, 16, 2, 0, 0),
+"editable_instances": [],
+"names": PackedStringArray("Inversion Block", "script", "Node2D", "Area2D", "collision_layer", "collision_mask", "CollisionShape2D", "shape", "Sprite2D", "scale", "texture", "hframes", "vframes", "frame", "_on_area_2d_body_entered", "body_entered", "_on_area_2d_body_exited", "body_exited"),
+"node_count": 4,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 2, 0, -1, 1, 1, 0, 0, 0, 0, 3, 3, -1, 2, 4, 1, 5, 2, 0, 1, 0, 6, 6, -1, 1, 7, 3, 0, 0, 0, 8, 8, -1, 5, 9, 4, 10, 5, 11, 6, 12, 6, 13, 7, 0),
+"variants": [SubResource("GDScript_8ubvv"), 0, 2, SubResource("RectangleShape2D_fc46s"), Vector2(0.8, 0.8), ExtResource("3_gmtxo"), 16, 92],
+"version": 3
+}
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_e4ulo"]
 resource_name = "Scenes"
 scenes/1/scene = ExtResource("1_jfvoo")
-scenes/2/scene = ExtResource("2_fb878")
+scenes/2/scene = SubResource("PackedScene_dnub8")
+scenes/3/scene = ExtResource("3_m1j82")
+scenes/5/scene = ExtResource("2_fb878")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luf2d"]
 texture = ExtResource("3_gmtxo")
