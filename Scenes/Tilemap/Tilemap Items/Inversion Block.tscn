@@ -1,0 +1,48 @@
+[gd_scene load_steps=4 format=3 uid="uid://cu2ly721qo4ki"]
+
+[ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="1_vpdt5"]
+
+[sub_resource type="GDScript" id="GDScript_8ubvv"]
+script/source = "extends Node2D
+
+var sleeping = false
+
+func _ready():
+	add_to_group('inversion_blocks')
+
+func _on_area_2d_body_entered(body):
+	if not sleeping:
+		EventBus.emitEvent('level:invert_gravity')
+		get_tree().call_group(\"inversion_blocks\", \"sleep\")
+
+func _on_area_2d_body_exited(body):
+	get_tree().call_group(\"inversion_blocks\", \"wake_up\")
+
+func sleep():
+	sleeping = true
+	
+func wake_up():
+	sleeping = false
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fc46s"]
+
+[node name="Inversion Block" type="Node2D"]
+script = SubResource("GDScript_8ubvv")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_fc46s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("1_vpdt5")
+hframes = 16
+vframes = 16
+frame = 92
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

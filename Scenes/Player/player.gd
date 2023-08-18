@@ -23,8 +23,14 @@ var gravityDirection = Vector2.DOWN
 func _ready():
 	lastPosition = position
 	$player.play("appear")
+	
+	EventBus.addEventListener('level:invert_gravity', invert_gravity)
+	
+func invert_gravity(args = {}):
+	gravityDirection *= -1
 
 func _physics_process(delta):
+	
 	delta *= 60
 	
 	var objectRotation = 0
