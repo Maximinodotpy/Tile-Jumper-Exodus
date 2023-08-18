@@ -1,0 +1,61 @@
+[gd_scene load_steps=8 format=3 uid="uid://bsi7eyvpqnntn"]
+
+[ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="1_hq5qr"]
+
+[sub_resource type="GDScript" id="GDScript_l77h3"]
+script/source = "extends Node2D
+
+func _on_area_2d_body_entered(body):
+	if body.has_method('die'):
+		body.die()
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1vxb"]
+atlas = ExtResource("1_hq5qr")
+region = Rect2(200, 120, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1pbjw"]
+atlas = ExtResource("1_hq5qr")
+region = Rect2(220, 120, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue2jk"]
+atlas = ExtResource("1_hq5qr")
+region = Rect2(240, 120, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kdvc2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1vxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1pbjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ue2jk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fkars"]
+size = Vector2(20, 7)
+
+[node name="Spike" type="Node2D"]
+script = SubResource("GDScript_l77h3")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kdvc2")
+autoplay = "default"
+frame_progress = 0.572466
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_fkars")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
