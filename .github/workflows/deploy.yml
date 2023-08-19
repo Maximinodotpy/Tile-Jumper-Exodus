@@ -25,7 +25,7 @@ jobs:
       - name: Godot HTML5 export
         uses: dulvui/godot-html-export@v0.0.2
         with:
-          godot-version: 4.2
+          godot-version: 4.1
 
       # uploads to itch.io
       # more info here https://github.com/dulvui/itchio-butler-upload
