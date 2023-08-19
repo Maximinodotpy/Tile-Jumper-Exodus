@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://c2hqt63q6m3yg"]
+
+[ext_resource type="FontFile" uid="uid://bfpxu1oslr4lm" path="res://Assets/Font/VictorMono-VariableFont_wght.ttf" id="1_acyml"]
+
+[resource]
+default_font = ExtResource("1_acyml")
+default_font_size = 20

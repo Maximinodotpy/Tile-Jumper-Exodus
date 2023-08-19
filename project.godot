@@ -36,6 +36,10 @@ movie_writer/movie_file="C:/Users/Maxim/OneDrive/Programming/Tile Jumper Exodus/
 
 enabled=PackedStringArray("res://addons/gdshell/plugin.cfg")
 
+[gui]
+
+theme/custom="res://Scenes/Userinterfaces/Theme/theme.tres"
+
 [input]
 
 r={

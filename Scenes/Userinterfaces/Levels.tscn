@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://dspgx36jy02m1"]
+
+[ext_resource type="PackedScene" uid="uid://d12o3ubnrj0r0" path="res://Scenes/Userinterfaces/UI Template.tscn" id="1_lv53l"]
+
+[sub_resource type="GDScript" id="GDScript_6uccf"]
+script/source = "extends Control
+
+
+# Called when the node enters the scene tree for the first time.
+
+var scene_switcher = preload('res://Scenes/Userinterfaces/Scene Swither Button.tscn')
+
+var levels = []
+
+func _ready():
+	var files = Helpers.getAllFilesInDirectory('res://Scenes/Levels/Chapters')
+	
+	print(files)
+	
+	for level in files:
+		var button: Button = scene_switcher.instantiate()
+		
+		button.text = level.split('.')[0]
+		button.scene = 'res://Scenes/Levels/Chapters/' + level.split('.')[0] + '.tscn'
+		
+		$\"m/v/container/levels\".add_child(button)
+
+"
+
+[node name="UI Template" instance=ExtResource("1_lv53l")]
+script = SubResource("GDScript_6uccf")
+
+[node name="Main Label" parent="m/v/VBoxContainer" index="0"]
+text = "Levels"
+
+[node name="Seconday Label" parent="m/v/VBoxContainer" index="1"]
+text = ""
+
+[node name="levels" type="VBoxContainer" parent="m/v/container" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

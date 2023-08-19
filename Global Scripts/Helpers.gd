@@ -11,7 +11,7 @@ func formatSeconds(time : float, use_milliseconds : bool) -> String:
 	var milliseconds := fmod(time, 1) * 100
 	return "%02d:%02d:%02d" % [minutes, seconds, milliseconds]
 
-func getAllFilesInDirectory(path):
+func getAllFilesInDirectory(path, extension = ''):
 	var files = []
 	var dir = DirAccess.open(path)
 	

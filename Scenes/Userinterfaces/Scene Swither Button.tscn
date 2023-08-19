@@ -5,11 +5,16 @@ script/source = "extends Button
 
 @export_file('*.tscn') var scene
 
+func _ready():
+	print('Scene Switch Button Ready')
+
 func _on_pressed():
-	print('Switching To '+scene)
+	print('Trying to Switch')
 	
 	if scene:
+		print('Switching To '+scene)
 		get_tree().change_scene_to_file(scene)
+	
 "
 
 [node name="Scene Swither Button" type="Button"]

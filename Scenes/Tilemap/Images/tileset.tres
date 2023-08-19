@@ -27,7 +27,6 @@ tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 2, 9, 65537, 3, 327689, 65537, 3
 resource_name = "Scenes"
 scenes/1/scene = ExtResource("1_jfvoo")
 scenes/2/scene = ExtResource("2_7f4vx")
-scenes/2/display_placeholder = ExtResource("2_7f4vx")
 scenes/3/scene = ExtResource("3_m1j82")
 scenes/4/scene = ExtResource("3_2ofh2")
 scenes/5/scene = ExtResource("2_fb878")

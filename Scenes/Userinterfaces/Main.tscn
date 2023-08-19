@@ -1,40 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dic1ecimqkem3"]
+[gd_scene load_steps=3 format=3 uid="uid://cnooyf65sf4m7"]
 
-[sub_resource type="GDScript" id="GDScript_18g82"]
-script/source = "extends Control
+[ext_resource type="PackedScene" uid="uid://d12o3ubnrj0r0" path="res://Scenes/Userinterfaces/UI Template.tscn" id="1_b4ktm"]
+[ext_resource type="PackedScene" uid="uid://dcdae13hoit18" path="res://Scenes/Userinterfaces/Scene Swither Button.tscn" id="2_p5cuy"]
 
+[node name="UI Template" instance=ExtResource("1_b4ktm")]
 
-# Called when the node enters the scene tree for the first time.
+[node name="Main Label" parent="m/v/VBoxContainer" index="0"]
+text = "Tile Jumper Exodus"
 
-var scene_switcher = preload('res://Scenes/Userinterfaces/Scene Swither Button.tscn')
+[node name="Seconday Label" parent="m/v/VBoxContainer" index="1"]
+text = ""
 
-var levels = []
-
-func _ready():
-	var files = Helpers.getAllFilesInDirectory('res://Scenes/Levels/Chapters')
-	
-	print(files)
-	
-	for level in files:
-		var button: Button = scene_switcher.instantiate()
-		
-		button.text = String(level.split('.')[0])
-		button.scene = 'res://Scenes/Levels/Chapters/' + level
-		
-		$\"v/levels\".add_child(button)
-
-"
-
-[node name="Main" type="Control"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = SubResource("GDScript_18g82")
-
-[node name="v" type="VBoxContainer" parent="."]
+[node name="h" type="HBoxContainer" parent="m/v/container" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -42,9 +19,28 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="v"]
+[node name="Options" type="VBoxContainer" parent="m/v/container/h" index="0"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
-text = "Tile Jumper Exodus"
+theme_override_constants/separation = 20
+metadata/_edit_use_anchors_ = true
 
-[node name="levels" type="VBoxContainer" parent="v"]
+[node name="Scene Swither Button" parent="m/v/container/h/Options" index="0" instance=ExtResource("2_p5cuy")]
 layout_mode = 2
+text = "Levels"
+scene = "res://Scenes/Userinterfaces/Levels.tscn"
+
+[node name="Scene Swither Button2" parent="m/v/container/h/Options" index="1" instance=ExtResource("2_p5cuy")]
+visible = false
+layout_mode = 2
+text = "Credits"
+
+[node name="LinkButton" type="LinkButton" parent="m/v/container/h/Options" index="2"]
+layout_mode = 2
+size_flags_vertical = 10
+text = "maximmaeder.com"
+underline = 1
+uri = "https://maximmaeder.com/"
+
+[node name="Scene Swither Button" parent="m/v/bottom_line" index="0"]
+visible = false

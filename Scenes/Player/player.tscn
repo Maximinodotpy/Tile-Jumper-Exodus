@@ -40,17 +40,17 @@ func _process(delta):
 	x_offset += 1
 	y_offset += 1
 
-	if player.getCrossAxis() > 480 and not $\"../RayCastLeft\".is_colliding() and not $\"../RayCastRight\".is_colliding():
+	if player.getCrossAxis() > 490 and not $\"../RayCastLeft\".is_colliding() and not $\"../RayCastRight\".is_colliding():
 		var rotation_noise_number = rotation_noise.get_noise_1d(rotation_offset) + 0.5
 		rotation_degrees = lerpf(rotation_degrees, 45 * rotation_noise_number - 22.5, 0.1)
 		
-		var position_range = 50
+		var position_range = 200
 		
 		var x_noise_number = x_noise.get_noise_1d(x_offset) + 0.5
-		position.x = lerpf(position.x, position_range * x_noise_number - (position_range / 2), 0.1)
+		position.x = lerpf(position.x, position_range * x_noise_number - (position_range / 2), 0.05)
 		
 		var y_noise_number = y_noise.get_noise_1d(y_offset) + 0.5
-		position.y = lerpf(position.y, position_range * y_noise_number - (position_range / 2), 0.1)	
+		position.y = lerpf(position.y, position_range * y_noise_number - (position_range / 2), 0.05)
 	else:
 		rotation_degrees = lerpf(rotation_degrees, 0.0, 0.3)
 		position.x = lerpf(position.x, 0.0, 0.3)
@@ -155,6 +155,18 @@ vframes = 16
 frame = 45
 script = SubResource("GDScript_ff0jw")
 
+[node name="restartLabel" type="Label" parent="Sprite"]
+offset_left = -108.0
+offset_top = -49.8788
+offset_right = 108.0
+offset_bottom = -19.8788
+text = "Press R to Restart"
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="Sprite/restartLabel"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(-7.62939e-06, -14.7851)
+scale = Vector2(5, 0.710823)
+
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
 position_smoothing_enabled = true
@@ -174,18 +186,6 @@ target_position = Vector2(20, 0)
 [node name="holdMaxSpeed" type="Timer" parent="."]
 wait_time = 232.374
 one_shot = true
-
-[node name="restartLabel" type="Label" parent="."]
-offset_left = -68.0
-offset_top = -49.8788
-offset_right = 69.0
-offset_bottom = -23.8788
-text = "Press R to Restart"
-
-[node name="TouchScreenButton" type="TouchScreenButton" parent="restartLabel"]
-modulate = Color(1, 1, 1, 0)
-position = Vector2(-7.62939e-06, -14.7851)
-scale = Vector2(5, 0.710823)
 
 [node name="coyoteJump" type="Timer" parent="."]
 
@@ -228,5 +228,5 @@ shape = SubResource("RectangleShape2D_7u88j")
 visible = false
 texture = SubResource("NoiseTexture2D_py3m8")
 
+[connection signal="pressed" from="Sprite/restartLabel/TouchScreenButton" to="." method="specialAction" binds= ["spikes"]]
 [connection signal="timeout" from="holdMaxSpeed" to="." method="_on_holdMaxSpeed_timeout"]
-[connection signal="pressed" from="restartLabel/TouchScreenButton" to="." method="specialAction" binds= ["spikes"]]

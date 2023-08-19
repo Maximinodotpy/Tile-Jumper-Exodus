@@ -1,0 +1,34 @@
+[gd_scene load_steps=2 format=3 uid="uid://mf88wmibbdky"]
+
+[ext_resource type="PackedScene" uid="uid://d12o3ubnrj0r0" path="res://Scenes/Userinterfaces/UI Template.tscn" id="1_e87td"]
+
+[node name="UI Template" instance=ExtResource("1_e87td")]
+
+[node name="Main Label" parent="m/v/VBoxContainer" index="0"]
+text = "Credits"
+
+[node name="Seconday Label" parent="m/v/VBoxContainer" index="1"]
+text = ""
+
+[node name="v" type="VBoxContainer" parent="m/v/container" index="0"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.444
+anchor_bottom = 1.0
+offset_right = 0.039978
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="line" type="HBoxContainer" parent="m/v/container/v" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="person" type="Label" parent="m/v/container/v/line" index="0"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Programming"
+
+[node name="role" type="Label" parent="m/v/container/v/line" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Maxim Maeder"

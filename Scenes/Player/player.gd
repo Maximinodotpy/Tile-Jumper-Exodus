@@ -49,7 +49,7 @@ func _physics_process(delta):
 	rotation_degrees = rad_to_deg(gravityDirection.angle()) - 90
 	up_direction = gravityDirection * -1
 	
-	$restartLabel.visible = getCrossAxis() == MAX_DOWN_VEL and not root.isFinished
+	$"Sprite/restartLabel".visible = getCrossAxis() == MAX_DOWN_VEL and not root.isFinished
 
 	if Input.is_action_just_pressed('r') and not root.isFinished:
 		EventBus.emitEvent('die')
