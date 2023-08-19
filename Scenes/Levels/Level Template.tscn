@@ -294,11 +294,20 @@ layer_2/tile_data = PackedInt32Array()
 motion_mirroring = Vector2(1920, 1080)
 
 [node name="TextureRect" type="TextureRect" parent="ParallaxBackground/ParallaxLayer"]
+visible = false
 offset_right = 1920.0
 offset_bottom = 1080.0
 texture = ExtResource("3_5vrwl")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2(968, 540)
+scale = Vector2(1.89063, 1.0625)
+texture = ExtResource("3_5vrwl")
+
+[node name="CanvasModulate2" type="CanvasModulate" parent="ParallaxBackground"]
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [node name="ui" type="CanvasLayer" parent="."]
 process_mode = 3
@@ -489,6 +498,9 @@ scene = "res://Scenes/Userinterfaces/Main.tscn"
 libraries = {
 "": SubResource("AnimationLibrary_h1gw1")
 }
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.0784314, 0.0784314, 0.0784314, 1)
 
 [connection signal="pressed" from="ui/ui/v/top/pause_button" to="ui" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="ui/pause_menu/v/m/VBoxContainer/v/continue_button" to="ui" method="_on_continue_button_pressed"]

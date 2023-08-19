@@ -1,7 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://bl7gxbsuiscw7"]
+[gd_scene load_steps=14 format=3 uid="uid://bl7gxbsuiscw7"]
 
 [ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="1"]
 [ext_resource type="Script" path="res://Scenes/Player/player.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cu3g5sherqbgh" path="res://Scenes/Player/lightcone.png" id="3_f006i"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 
@@ -227,6 +228,13 @@ shape = SubResource("RectangleShape2D_7u88j")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = SubResource("NoiseTexture2D_py3m8")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.12, 1.12)
+range_layer_min = -200
+range_layer_max = 200
+shadow_enabled = true
+texture = ExtResource("3_f006i")
 
 [connection signal="pressed" from="Sprite/restartLabel/TouchScreenButton" to="." method="specialAction" binds= ["spikes"]]
 [connection signal="timeout" from="holdMaxSpeed" to="." method="_on_holdMaxSpeed_timeout"]
