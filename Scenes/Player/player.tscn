@@ -230,6 +230,8 @@ visible = false
 texture = SubResource("NoiseTexture2D_py3m8")
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 0)
 scale = Vector2(1.12, 1.12)
 range_layer_min = -200
 range_layer_max = 200

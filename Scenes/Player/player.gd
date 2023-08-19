@@ -43,6 +43,8 @@ func checkpoint(args = {}):
 
 func _physics_process(delta):
 	
+	$"PointLight2D".visible = root.isDark
+	
 	delta *= 60
 	
 	var objectRotation = 0
