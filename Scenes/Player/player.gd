@@ -29,6 +29,7 @@ func _ready():
 	EventBus.addEventListener('trampolin', trampolin)
 	EventBus.addEventListener('checkpoint', checkpoint)
 	EventBus.addEventListener('die', die)
+	EventBus.addEventListener('jumppad', jumppad)
 	
 func invert_gravity(args = {}):
 	gravityDirection *= -1
@@ -39,7 +40,6 @@ func trampolin(args = {}):
 func checkpoint(args = {}):
 	lastPosition = position
 	lastRotation = gravityDirection
-	print(lastPosition)
 
 func _physics_process(delta):
 	
@@ -112,7 +112,7 @@ func _physics_process(delta):
 
 
 func jumppad(args):
-	print('JUMPAD')
+	setCrossAxis(-JUMPPAD_POWER)
 	pass
 
 func die(args = {}):

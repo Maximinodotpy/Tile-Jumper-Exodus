@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=15 format=3 uid="uid://cufwmfj0me60d"]
+[gd_resource type="TileSet" load_steps=16 format=3 uid="uid://cufwmfj0me60d"]
 
 [ext_resource type="PackedScene" uid="uid://bsi7eyvpqnntn" path="res://Scenes/Tilemap/Tilemap Items/Spike.tscn" id="1_jfvoo"]
 [ext_resource type="PackedScene" uid="uid://diusxc0542jmd" path="res://Scenes/Tilemap/Tilemap Items/Goal.tscn" id="2_7f4vx"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="3_gmtxo"]
 [ext_resource type="PackedScene" uid="uid://js3kqnt10c66" path="res://Scenes/Tilemap/Tilemap Items/Trampolin.tscn" id="3_m1j82"]
 [ext_resource type="PackedScene" uid="uid://v8k33i3c0fro" path="res://Scenes/Tilemap/Tilemap Items/Temporary Block.tscn" id="6_judd5"]
+[ext_resource type="PackedScene" uid="uid://buxn2d123oeah" path="res://Scenes/Tilemap/Tilemap Items/Jumppad.tscn" id="7_f074o"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_vb165"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0)
@@ -31,6 +32,7 @@ scenes/3/scene = ExtResource("3_m1j82")
 scenes/4/scene = ExtResource("3_2ofh2")
 scenes/5/scene = ExtResource("2_fb878")
 scenes/6/scene = ExtResource("6_judd5")
+scenes/7/scene = ExtResource("7_f074o")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_luf2d"]
 resource_name = "Atlas"
