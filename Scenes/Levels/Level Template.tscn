@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://buhaqx55xwv6q"]
+[gd_scene load_steps=7 format=3 uid="uid://buhaqx55xwv6q"]
 
 [ext_resource type="TileSet" uid="uid://cufwmfj0me60d" path="res://Scenes/Tilemap/Images/tileset.tres" id="1_hvy2l"]
 [ext_resource type="PackedScene" uid="uid://bl7gxbsuiscw7" path="res://Scenes/Player/player.tscn" id="2_1w3xb"]
 [ext_resource type="Texture2D" uid="uid://colhxcj3qc1k3" path="res://Scenes/Levels/backgrounds/texture_08.png" id="3_5vrwl"]
+[ext_resource type="PackedScene" uid="uid://dcdae13hoit18" path="res://Scenes/Userinterfaces/Scene Swither Button.tscn" id="4_5pteh"]
 
 [sub_resource type="GDScript" id="GDScript_sgy8g"]
 script/source = "extends Node2D
@@ -15,6 +16,21 @@ func _ready():
 	
 "
 
+[sub_resource type="GDScript" id="GDScript_prxy8"]
+script/source = "extends CanvasLayer
+
+
+
+func _process(delta):
+	$\"pause_menu\".visible = get_tree().paused
+
+func _on_pause_button_pressed():
+	get_tree().paused = true
+
+func _on_continue_button_pressed():
+	get_tree().paused = false
+"
+
 [node name="Level" type="Node2D"]
 script = SubResource("GDScript_sgy8g")
 
@@ -24,7 +40,7 @@ tile_set = ExtResource("1_hvy2l")
 format = 2
 layer_0/name = "Main Layer"
 layer_0/z_index = 1
-layer_0/tile_data = PackedInt32Array(196609, 1, 8, 458753, 1, 9, 393217, 458753, 10, 327681, 458753, 9, 262145, 1, 9, 589825, 1, 9, 524289, 1, 9, 720897, 1, 9, 655361, 1, 9, 851969, 1, 9, 786433, 1, 9, 917505, 1, 9, 1048577, 1, 9, 983041, 1, 9, 1179649, 1, 9, 1114113, 1, 9, 1245185, 1, 9, 1310721, 1, 10, 1310722, 524289, 3, 1245186, 524289, 1, 1179650, 524289, 1, 1114114, 524289, 1, 1048578, 524289, 1, 983042, 524289, 1, 917506, 524289, 1, 851970, 524289, 1, 786434, 524289, 1, 720898, 524289, 1, 655362, 524289, 1, 589826, 524289, 1, 524290, 524289, 1, 458754, 524289, 1, 393218, 524289, 1, 327682, 524289, 1, 262146, 524289, 1, 196610, 524289, 0, 196611, 720897, 0, 262147, 393217, 1, 327683, 393217, 2, 393219, 720897, 2, 458755, 720897, 2, 524291, 720897, 2, 589827, 720897, 2, 655363, 720897, 2, 720899, 720897, 2, 786435, 720897, 2, 851971, 720897, 2, 917507, 720897, 2, 1310723, 720897, 3, 1245187, 720897, 2, 1179651, 720897, 2, 1114115, 720897, 2, 1048579, 720897, 2, 983043, 720897, 2, 196612, 0, 327680, 196613, 0, 327680, 196614, 0, 327680, 262148, 655361, 0, 262149, 655361, 0, 262150, 655361, 0, 262151, 655361, 0, 262152, 655361, 0, 262153, 655361, 0, 262154, 655361, 0, 327687, 589825, 3, 327686, 589825, 3, 327685, 589825, 3, 327684, 589825, 3, 327688, 589825, 3, 327690, 589825, 3, 327689, 589825, 3, 327691, 589825, 3, 327692, 589825, 3, 327693, 589825, 3, 327694, 589825, 3, 262156, 655361, 0, 262155, 655361, 0, 262157, 655361, 0, 262158, 655361, 0, 262159, 655361, 0, 262160, 655361, 0, 262161, 720897, 0, 327695, 589825, 3, 327696, 589825, 3, 327697, 393217, 3, 327698, 196609, 3, 327680, 655361, 8, 393215, 655361, 8, 393214, 655361, 8, 393213, 655361, 8, 393212, 655361, 8, 393211, 655361, 8, 393210, 655361, 8, 393209, 655361, 8, 393208, 655361, 8, 458745, 589825, 11, 458746, 589825, 11, 458747, 589825, 11, 458748, 589825, 11, 458749, 589825, 11, 458750, 589825, 11, 458751, 589825, 11, 393216, 589825, 11, 458744, 589825, 11, 458743, 524289, 11, 393207, 524289, 8, -196607, 65537, 11, -196606, 131073, 11, -196605, 131073, 11, -196604, 131073, 11, -196603, 131073, 11, -196602, 131073, 11, -196601, 196609, 11, 196615, 0, 196608, 196616, 0, 196608, 196617, 0, 196608, 196618, 0, 65536, 196619, 0, 65536, 196620, 0, 65536)
+layer_0/tile_data = PackedInt32Array(196609, 1, 8, 458753, 1, 9, 393217, 458753, 10, 327681, 458753, 9, 262145, 1, 9, 589825, 1, 9, 524289, 1, 9, 720897, 1, 9, 655361, 1, 9, 851969, 1, 9, 786433, 1, 9, 917505, 1, 9, 1048577, 1, 9, 983041, 1, 9, 1179649, 1, 9, 1114113, 1, 9, 1245185, 1, 9, 1310721, 1, 10, 1310722, 524289, 3, 1245186, 524289, 1, 1179650, 524289, 1, 1114114, 524289, 1, 1048578, 524289, 1, 983042, 524289, 1, 917506, 524289, 1, 851970, 524289, 1, 786434, 524289, 1, 720898, 524289, 1, 655362, 524289, 1, 589826, 524289, 1, 524290, 524289, 1, 458754, 524289, 1, 393218, 524289, 1, 327682, 524289, 1, 262146, 524289, 1, 196610, 524289, 0, 196611, 720897, 0, 262147, 393217, 1, 327683, 393217, 2, 393219, 720897, 2, 458755, 720897, 2, 524291, 720897, 2, 589827, 720897, 2, 655363, 720897, 2, 720899, 720897, 2, 786435, 720897, 2, 851971, 720897, 2, 917507, 720897, 2, 1310723, 720897, 3, 1245187, 720897, 2, 1179651, 720897, 2, 1114115, 720897, 2, 1048579, 720897, 2, 983043, 720897, 2, 196612, 0, 327680, 196613, 0, 327680, 196614, 0, 327680, 262148, 655361, 0, 262149, 655361, 0, 262150, 655361, 0, 262151, 655361, 0, 262152, 655361, 0, 262153, 655361, 0, 262154, 655361, 0, 327687, 589825, 3, 327686, 589825, 3, 327685, 589825, 3, 327684, 589825, 3, 327688, 589825, 3, 327690, 589825, 3, 327689, 589825, 3, 327691, 589825, 3, 327692, 589825, 3, 327693, 589825, 3, 327694, 589825, 3, 262156, 655361, 0, 262155, 655361, 0, 262157, 655361, 0, 262158, 655361, 0, 262159, 655361, 0, 262160, 655361, 0, 262161, 655361, 0, 327695, 589825, 3, 327696, 589825, 3, 327697, 589825, 3, 327698, 720897, 3, 327680, 655361, 8, 393215, 655361, 8, 393214, 655361, 8, 393213, 655361, 8, 393212, 655361, 8, 393211, 655361, 8, 393210, 655361, 8, 393209, 655361, 8, 393208, 655361, 8, 458745, 589825, 11, 458746, 589825, 11, 458747, 589825, 11, 458748, 589825, 11, 458749, 589825, 11, 458750, 589825, 11, 458751, 589825, 11, 393216, 589825, 11, 458744, 589825, 11, 458743, 524289, 11, 393207, 524289, 8, 196615, 0, 196608, 196616, 0, 196608, 196617, 0, 196608, 196618, 0, 65536, 196619, 0, 65536, 196620, 0, 65536, 196621, 0, 262144, 196622, 0, 262144, 196623, 0, 262144, -393215, 65537, 11, -393214, 131073, 11, -393213, 131073, 11, -393212, 131073, 11, -393211, 131073, 11, -393210, 131073, 11, -393209, 131073, 11, -393208, 131073, 11, -393207, 131073, 11, -393206, 131073, 11, -393205, 131073, 11, -393204, 131073, 11, -393203, 131073, 11, -393202, 131073, 11, -393201, 131073, 11, -393200, 131073, 11, -393199, 131073, 11, -393198, 131073, 11, -393197, 196609, 11, 262162, 720897, 0, 5, 1, 11, 8, 1, 11, 11, 1, 11, 14, 1, 11)
 layer_1/name = "Background"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
@@ -55,6 +71,8 @@ expand_mode = 1
 stretch_mode = 1
 
 [node name="ui" type="CanvasLayer" parent="."]
+process_mode = 3
+script = SubResource("GDScript_prxy8")
 
 [node name="ui" type="Control" parent="ui"]
 layout_mode = 3
@@ -79,7 +97,7 @@ grow_vertical = 2
 layout_mode = 2
 alignment = 2
 
-[node name="Button" type="Button" parent="ui/ui/v/top"]
+[node name="pause_button" type="Button" parent="ui/ui/v/top"]
 layout_mode = 2
 text = "Pause"
 
@@ -95,3 +113,138 @@ text = "Power Up"
 [node name="Button2" type="Button" parent="ui/ui/v/bottom"]
 layout_mode = 2
 text = "Power Up"
+
+[node name="pause_menu" type="Control" parent="ui"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ui/pause_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.607843, 0.196078, 0.392157, 0.27451)
+
+[node name="v" type="ColorRect" parent="ui/pause_menu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.595833
+anchor_top = 0.1
+anchor_right = 0.9625
+anchor_bottom = 0.9
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.113725, 0.113725, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="m" type="MarginContainer" parent="ui/pause_menu/v"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/pause_menu/v/m"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ui/pause_menu/v/m/VBoxContainer"]
+layout_mode = 2
+text = "Paused"
+
+[node name="v" type="VBoxContainer" parent="ui/pause_menu/v/m/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="continue_button" type="Button" parent="ui/pause_menu/v/m/VBoxContainer/v"]
+layout_mode = 2
+text = "Continue"
+
+[node name="Scene Swither Button" parent="ui/pause_menu/v/m/VBoxContainer/v" instance=ExtResource("4_5pteh")]
+layout_mode = 2
+text = "Main Menu"
+scene = "res://Scenes/Userinterfaces/Main.tscn"
+
+[node name="passed_menu" type="Control" parent="ui"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="ui/passed_menu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.568627, 0.611765, 0.196078, 0.27451)
+
+[node name="v" type="ColorRect" parent="ui/passed_menu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -156.0
+offset_top = -92.0
+offset_right = 156.0
+offset_bottom = 93.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.113725, 0.113725, 0.113725, 1)
+
+[node name="m" type="MarginContainer" parent="ui/passed_menu/v"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ui/passed_menu/v/m"]
+layout_mode = 2
+theme_override_constants/separation = 30
+
+[node name="Label" type="Label" parent="ui/passed_menu/v/m/VBoxContainer"]
+layout_mode = 2
+text = "PASSED!"
+horizontal_alignment = 1
+
+[node name="v" type="VBoxContainer" parent="ui/passed_menu/v/m/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="continue_button" type="Button" parent="ui/passed_menu/v/m/VBoxContainer/v"]
+visible = false
+layout_mode = 2
+text = "Continue"
+
+[node name="Scene Swither Button" parent="ui/passed_menu/v/m/VBoxContainer/v" instance=ExtResource("4_5pteh")]
+layout_mode = 2
+text = "Main Menu"
+scene = "res://Scenes/Userinterfaces/Main.tscn"
+
+[connection signal="pressed" from="ui/ui/v/top/pause_button" to="ui" method="_on_pause_button_pressed"]
+[connection signal="pressed" from="ui/pause_menu/v/m/VBoxContainer/v/continue_button" to="ui" method="_on_continue_button_pressed"]
+[connection signal="pressed" from="ui/passed_menu/v/m/VBoxContainer/v/continue_button" to="ui" method="_on_continue_button_pressed"]

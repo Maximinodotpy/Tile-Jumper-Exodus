@@ -2,10 +2,6 @@ extends CharacterBody2D
 
 var record = []
 
-#@onready var root = get_tree().current_scene
-
-#var motion = Vector2(0, 0)
-
 const SIDE_ACCEL = 140
 const JUMP_POWER = 300
 const GRAVITY = 10
@@ -17,6 +13,9 @@ const COYOTE_TIME = 0.015
 var justWallJumped = false
 var justJumped = false
 var lastPosition
+var lastRotation = Vector2.DOWN
+
+var was_just_in_air = false
 
 var gravityDirection = Vector2.DOWN
 
@@ -26,12 +25,18 @@ func _ready():
 	
 	EventBus.addEventListener('invert_gravity', invert_gravity)
 	EventBus.addEventListener('trampolin', trampolin)
+	EventBus.addEventListener('checkpoint', checkpoint)
 	
 func invert_gravity(args = {}):
 	gravityDirection *= -1
 
 func trampolin(args = {}):
 	velocity *= -1
+	
+func checkpoint(args = {}):
+	lastPosition = position
+	lastRotation = gravityDirection
+	print(lastPosition)
 
 func _physics_process(delta):
 	
@@ -44,39 +49,43 @@ func _physics_process(delta):
 	$restartLabel.visible = getCrossAxis() == MAX_DOWN_VEL
 
 	if Input.is_action_just_pressed('r'):
-		match gravityDirection:
-			Vector2.DOWN:
-				gravityDirection = Vector2.LEFT
-			Vector2.LEFT: 
-				gravityDirection = Vector2.UP
-			Vector2.UP:
-				gravityDirection = Vector2.RIGHT
-			Vector2.RIGHT: 
-				gravityDirection = Vector2.DOWN
-				
-#		gravityDirection = gravityDirection.rotated(deg_to_rad(90))
-#		die()
+		die()
+#		match gravityDirection:
+#			Vector2.DOWN:
+#				gravityDirection = Vector2.LEFT
+#			Vector2.LEFT: 
+#				gravityDirection = Vector2.UP
+#			Vector2.UP:
+#				gravityDirection = Vector2.RIGHT
+#			Vector2.RIGHT: 
+#				gravityDirection = Vector2.DOWN
 	
 	if is_on_floor():
 		$coyoteJump.stop()
 		$coyoteJump.start(COYOTE_TIME)
 	
+		if was_just_in_air:
+			$ground_punch_particles.emitting = true
+		
+		was_just_in_air = false
+	
+	if not is_on_floor():
+		was_just_in_air = true
+	
+	
 	if Input.is_action_pressed("space"):
 		
 		if is_on_floor() or $coyoteJump.time_left > 0:
 			$coyoteJump.stop()
-#			velocity.y = -JUMP_POWER
 			setCrossAxis(-JUMP_POWER)
 			justJumped = false
 #			SoundManager.play('jump')
 	
 	if Input.is_action_just_pressed("space") and not is_on_floor():
 		if $RayCastLeft.is_colliding() or $RayCastRight.is_colliding():
-#			velocity.y = -JUMP_POWER * 0.8
 			setCrossAxis(-JUMP_POWER * 0.8)
 			justWallJumped = true
 			$holdMaxSpeed.start(0.225)
-
 #			SoundManager.play('jump')
 		
 		if $RayCastLeft.is_colliding():
@@ -91,11 +100,8 @@ func _physics_process(delta):
 			addToMainAxis(SIDE_ACCEL)
 	
 	if not justWallJumped:
-#		velocity.x = lerp(velocity.x, 0.0, 0.3)
 		setMainAxis(lerpf(getMainAxis(), 0.0, 0.3))
-		
-	
-#	velocity += GRAVITY * delta
+
 	addToCrossAxis(GRAVITY * delta)
 	
 	if MAX_DOWN_VEL < getCrossAxis():
@@ -111,7 +117,7 @@ func jumppad(args):
 func die():
 	position = lastPosition
 	velocity = Vector2.ZERO
-	gravityDirection = Vector2.DOWN
+	gravityDirection = lastRotation
 	$player.play("appear")
 
 func _input(event):

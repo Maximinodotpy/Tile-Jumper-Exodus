@@ -5,13 +5,24 @@ script/source = "extends Control
 
 
 # Called when the node enters the scene tree for the first time.
+
+var scene_switcher = preload('res://Scenes/Userinterfaces/Scene Swither Button.tscn')
+
+var levels = []
+
 func _ready():
-	pass # Replace with function body.
+	var files = Helpers.getAllFilesInDirectory('res://Scenes/Levels/Chapters')
+	
+	print(files)
+	
+	for level in files:
+		var button: Button = scene_switcher.instantiate()
+		
+		button.text = String(level.split('.')[0])
+		button.scene = 'res://Scenes/Levels/Chapters/' + level
+		
+		$\"v/levels\".add_child(button)
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 "
 
 [node name="Main" type="Control"]
@@ -22,3 +33,18 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = SubResource("GDScript_18g82")
+
+[node name="v" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="v"]
+layout_mode = 2
+text = "Tile Jumper Exodus"
+
+[node name="levels" type="VBoxContainer" parent="v"]
+layout_mode = 2

@@ -4,9 +4,6 @@ class_name GroupedCollisionTilemapItem
 
 @export var id: String
 
-#func _process(delta):
-#	print($Area2D.monitoring)
-
 var collision_count = 0
 
 func _ready():
