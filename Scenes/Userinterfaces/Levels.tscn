@@ -5,25 +5,18 @@
 [sub_resource type="GDScript" id="GDScript_6uccf"]
 script/source = "extends Control
 
-
-# Called when the node enters the scene tree for the first time.
-
 var scene_switcher = preload('res://Scenes/Userinterfaces/Scene Swither Button.tscn')
 
 var levels = []
 
 func _ready():
-	var files = Helpers.getAllFilesInDirectory('res://Scenes/Levels/Chapters')
-
-	print(files)
-
-	for level in files:
+	for level in Global.levels:
 		var button: Button = scene_switcher.instantiate()
 
 		button.text = level.split('.')[0]
 		button.scene = 'res://Scenes/Levels/Chapters/' + level.split('.')[0] + '.tscn'
 
-		$\"m/v/container/levels\".add_child(button)
+		$\"m/v/container/s/levels\".add_child(button)
 
 "
 
@@ -36,10 +29,16 @@ text = "Levels"
 [node name="Seconday Label" parent="m/v/VBoxContainer" index="1"]
 text = ""
 
-[node name="levels" type="VBoxContainer" parent="m/v/container" index="0"]
+[node name="s" type="ScrollContainer" parent="m/v/container" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="levels" type="VBoxContainer" parent="m/v/container/s" index="0"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true

@@ -46,6 +46,26 @@ script/source = "extends CanvasLayer
 
 @onready var root = Helpers.getSceneRoot()
 
+func _ready():
+	print()
+	
+	var scene_file_name = get_tree().current_scene.scene_file_path.split('/')[-1]
+	
+	print(scene_file_name)
+	
+	if scene_file_name in Global.levels:
+		var nextLevelIndex = Global.levels.find(scene_file_name) + 1
+		
+		if nextLevelIndex == Global.levels.size():
+			$\"passed_menu/v/m/VBoxContainer/v/continue_button\".queue_free()
+		else:
+			$\"passed_menu/v/m/VBoxContainer/v/continue_button\".scene = 'res://Scenes/Levels/Chapters/' + Global.levels[nextLevelIndex]
+		
+		print('NExt', nextLevelIndex)
+	else:
+		$\"passed_menu/v/m/VBoxContainer/v/continue_button\".queue_free()
+
+
 func _process(delta):
 	$\"pause_menu\".visible = get_tree().paused
 	
@@ -56,6 +76,7 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed(\"ui_cancel\"):
 		get_tree().paused = !get_tree().paused
+
 
 func _on_pause_button_pressed():
 	get_tree().paused = true
@@ -417,10 +438,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -156.0
-offset_top = -92.0
-offset_right = 156.0
-offset_bottom = 93.0
+offset_left = 324.0
+offset_top = 178.0
+offset_right = 636.0
+offset_bottom = 363.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.113725, 0.113725, 0.113725, 1)
@@ -455,9 +476,9 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="continue_button" type="Button" parent="ui/passed_menu/v/m/VBoxContainer/v"]
+[node name="continue_button" parent="ui/passed_menu/v/m/VBoxContainer/v" instance=ExtResource("4_5pteh")]
 layout_mode = 2
-text = "Continue"
+text = "Next Level"
 
 [node name="Scene Swither Button" parent="ui/passed_menu/v/m/VBoxContainer/v" instance=ExtResource("4_5pteh")]
 layout_mode = 2
@@ -471,4 +492,3 @@ libraries = {
 
 [connection signal="pressed" from="ui/ui/v/top/pause_button" to="ui" method="_on_pause_button_pressed"]
 [connection signal="pressed" from="ui/pause_menu/v/m/VBoxContainer/v/continue_button" to="ui" method="_on_continue_button_pressed"]
-[connection signal="pressed" from="ui/passed_menu/v/m/VBoxContainer/v/continue_button" to="ui" method="_on_continue_button_pressed"]
