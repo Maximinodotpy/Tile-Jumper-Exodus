@@ -24,7 +24,6 @@ jobs:
 
       - name: Godot HTML5 export
         run: | 
-            mkdir html5
             godot -v --export-release "HTML5" html5/index.html
 
       # uploads to itch.io
