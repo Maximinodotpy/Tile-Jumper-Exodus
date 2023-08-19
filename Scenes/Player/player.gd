@@ -15,6 +15,8 @@ var justJumped = false
 var lastPosition
 var lastRotation = Vector2.DOWN
 
+@onready var root = Helpers.getSceneRoot()
+
 var was_just_in_air = false
 
 var gravityDirection = Vector2.DOWN
@@ -26,6 +28,7 @@ func _ready():
 	EventBus.addEventListener('invert_gravity', invert_gravity)
 	EventBus.addEventListener('trampolin', trampolin)
 	EventBus.addEventListener('checkpoint', checkpoint)
+	EventBus.addEventListener('die', die)
 	
 func invert_gravity(args = {}):
 	gravityDirection *= -1
@@ -46,10 +49,10 @@ func _physics_process(delta):
 	rotation_degrees = rad_to_deg(gravityDirection.angle()) - 90
 	up_direction = gravityDirection * -1
 	
-	$restartLabel.visible = getCrossAxis() == MAX_DOWN_VEL
+	$restartLabel.visible = getCrossAxis() == MAX_DOWN_VEL and not root.isFinished
 
-	if Input.is_action_just_pressed('r'):
-		die()
+	if Input.is_action_just_pressed('r') and not root.isFinished:
+		EventBus.emitEvent('die')
 #		match gravityDirection:
 #			Vector2.DOWN:
 #				gravityDirection = Vector2.LEFT
@@ -72,9 +75,7 @@ func _physics_process(delta):
 	if not is_on_floor():
 		was_just_in_air = true
 	
-	
-	if Input.is_action_pressed("space"):
-		
+	if Input.is_action_pressed("space") and not root.isFinished:
 		if is_on_floor() or $coyoteJump.time_left > 0:
 			$coyoteJump.stop()
 			setCrossAxis(-JUMP_POWER)
@@ -93,7 +94,7 @@ func _physics_process(delta):
 		if $RayCastRight.is_colliding():
 			setMainAxis(-WALL_JUMP_POWER)
 	
-	if not justWallJumped:
+	if not justWallJumped and not root.isFinished:
 		if Input.is_action_pressed("a"):
 			addToMainAxis(-SIDE_ACCEL)
 		elif Input.is_action_pressed("d"):
@@ -114,7 +115,7 @@ func jumppad(args):
 	print('JUMPAD')
 	pass
 
-func die():
+func die(args = {}):
 	position = lastPosition
 	velocity = Vector2.ZERO
 	gravityDirection = lastRotation

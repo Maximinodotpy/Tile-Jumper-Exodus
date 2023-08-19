@@ -1,5 +1,8 @@
 extends Node
 
+func getSceneRoot():
+	return get_tree().root.get_child(-1)
+
 func formatSeconds(time : float, use_milliseconds : bool) -> String:
 	var minutes := time / 60
 	var seconds := fmod(time, 60)

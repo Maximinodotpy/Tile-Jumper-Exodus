@@ -40,7 +40,7 @@ func _process(delta):
 	x_offset += 1
 	y_offset += 1
 
-	if player.getCrossAxis() > 200 and not $\"../RayCastLeft\".is_colliding() and not $\"../RayCastRight\".is_colliding():
+	if player.getCrossAxis() > 480 and not $\"../RayCastLeft\".is_colliding() and not $\"../RayCastRight\".is_colliding():
 		var rotation_noise_number = rotation_noise.get_noise_1d(rotation_offset) + 0.5
 		rotation_degrees = lerpf(rotation_degrees, 45 * rotation_noise_number - 22.5, 0.1)
 		

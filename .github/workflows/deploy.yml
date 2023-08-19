@@ -1,0 +1,38 @@
+name: itch.io upload
+
+# define what triggers the action
+# in this case: on push if one of the files named in paths changes
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    # only run action, if pushed on prod branch
+    # change or remove according to your needs
+    if: github.ref == 'refs/heads/prod'
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+      
+      # change or remove according to your needs
+      - name: Create export directory
+        run: mkdir html5
+
+      # exports the game in html mode
+      # more info here https://github.com/dulvui/godot-html-export
+      - name: Godot HTML5 export
+        uses: dulvui/godot-html-export@v0.0.2
+
+      # uploads to itch.io
+      # more info here https://github.com/dulvui/itchio-butler-upload
+      - name: Upload to itch.io
+        uses: dulvui/itchio-butler-upload@v0.0.1
+        with:
+          working-directory: html5
+          api-key: ${{ secrets.BUTLER_CREDENTIALS }}
+          user: maximino
+          game: tile-jumper-exodus
+          channel: html5
