@@ -1,38 +1,34 @@
-name: itch.io upload
+name: "godot-ci export"
+on: push
 
-# define what triggers the action
-# in this case: on push if one of the files named in paths changes
-on:
-  push:
-    branches:
-      - master
-
+env:
+  GODOT_VERSION: 4.2
+  EXPORT_NAME: test-project
+  
 jobs:
-  deploy:
-    # only run action, if pushed on prod branch
-    # change or remove according to your needs
+  export-web:
+    name: Web Export
     runs-on: ubuntu-20.04
     container:
-        image: barichello/godot-ci:3.3.4
+      image: barichello/godot-ci:3.3.4
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v3
-      
-      # change or remove according to your needs
-      - name: Create export directory
-        run: mkdir html5
-
-      - name: Godot HTML5 export
-        run: | 
-            godot -v --export-release "HTML5" html5/index.html
-
-      # uploads to itch.io
-      # more info here https://github.com/dulvui/itchio-butler-upload
-      - name: Upload to itch.io
-        uses: dulvui/itchio-butler-upload@v0.0.1
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
-          working-directory: html5
-          api-key: ${{ secrets.BUTLER_CREDENTIALS }}
-          user: maximino
-          game: tile-jumper-exodus
-          channel: html5
+          lfs: true
+      - name: Setup
+        run: |
+          mkdir -v -p ~/.local/share/godot/templates
+          mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+      - name: Web Build
+        run: |
+          mkdir -v -p build/web
+          godot -v --export "HTML5" build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: build/web
+      - name: Install rsync 📚
+        run: |
+          ls
