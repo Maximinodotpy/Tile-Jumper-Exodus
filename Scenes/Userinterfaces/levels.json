@@ -1,3 +1,7 @@
 [
-	
+	"Intro.tscn",
+	"Chamber 1.tscn",
+	"Round Trip.tscn",
+	"Drill.tscn",
+	"Never Say Never.tscn"
 ]

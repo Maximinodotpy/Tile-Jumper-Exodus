@@ -14,15 +14,15 @@ var levels = []
 
 func _ready():
 	var files = Helpers.getAllFilesInDirectory('res://Scenes/Levels/Chapters')
-	
+
 	print(files)
-	
+
 	for level in files:
 		var button: Button = scene_switcher.instantiate()
-		
+
 		button.text = level.split('.')[0]
 		button.scene = 'res://Scenes/Levels/Chapters/' + level.split('.')[0] + '.tscn'
-		
+
 		$\"m/v/container/levels\".add_child(button)
 
 "
