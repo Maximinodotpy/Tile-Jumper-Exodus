@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=3 uid="uid://v8k33i3c0fro"]
+
+[ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="1_ydueo"]
+
+[sub_resource type="GDScript" id="GDScript_sq7q2"]
+script/source = "extends Node2D
+
+func _ready():
+	set_visibility_layer_bit(0, true)
+
+func _on_area_2d_body_entered(body):
+	print('Disappearing')
+	
+	$\"AnimationPlayer\".play(\"disappear\")
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fgvm3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e27sh"]
+size = Vector2(22, 22)
+
+[sub_resource type="Animation" id="Animation_o1vtn"]
+resource_name = "disappear"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 4.5, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2, 4.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_dr7du"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CharacterBody2D:collision_layer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8madg"]
+_data = {
+"RESET": SubResource("Animation_dr7du"),
+"disappear": SubResource("Animation_o1vtn")
+}
+
+[node name="Temporary Block" type="Node2D"]
+script = SubResource("GDScript_sq7q2")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("RectangleShape2D_fgvm3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ydueo")
+region_enabled = true
+region_rect = Rect2(280, 220, 20, 20)
+
+[node name="bg" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.137255)
+texture = ExtResource("1_ydueo")
+region_enabled = true
+region_rect = Rect2(280, 220, 20, 20)
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_e27sh")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_8madg")
+}
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

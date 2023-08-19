@@ -1,5 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://diusxc0542jmd"]
+[gd_scene load_steps=5 format=3 uid="uid://diusxc0542jmd"]
 
 [ext_resource type="PackedScene" uid="uid://cffxvunwl3qd1" path="res://Scenes/Tilemap/Tilemap Items/Templates/Grouped Collision Item.tscn" id="1_2xqdg"]
+[ext_resource type="Texture2D" uid="uid://o3woviw6lta1" path="res://Scenes/Tilemap/Images/tileMap.png" id="2_bwvc0"]
+
+[sub_resource type="GDScript" id="GDScript_vscee"]
+script/source = "extends GroupedCollisionTilemapItem
+
+var already_entered = false
+
+func entered():
+	if not already_entered:
+		already_entered = true
+		EventBus.emitEvent('goal_entered')
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpxl4"]
+size = Vector2(59.1892, 60)
 
 [node name="Grouped Collision Item" instance=ExtResource("1_2xqdg")]
+script = SubResource("GDScript_vscee")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+scale = Vector2(1.0137, 1)
+shape = SubResource("RectangleShape2D_dpxl4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_bwvc0")
+region_enabled = true
+region_rect = Rect2(220, 260, 60, 60)

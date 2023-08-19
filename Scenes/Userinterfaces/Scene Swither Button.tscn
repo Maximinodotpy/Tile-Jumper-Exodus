@@ -6,6 +6,8 @@ script/source = "extends Button
 @export_file('*.tscn') var scene
 
 func _on_pressed():
+	print('Switching To '+scene)
+	
 	if scene:
 		get_tree().change_scene_to_file(scene)
 "

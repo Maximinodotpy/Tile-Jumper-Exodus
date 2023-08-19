@@ -17,9 +17,12 @@ func removeEventListener(name: String, callable: Callable):
 			i += 1
 	
 func emitEvent(name: String, arguments: Dictionary = {}):
+	
+	print('Event "' + name + '" called')
+	
 	if events.has(name):
 		for callable in events[name]:
-			callable.call(arguments)
-
-#func _process(delta):
-#	print(events)
+			print(callable)
+			
+			if callable.is_valid():
+				callable.call(arguments)
