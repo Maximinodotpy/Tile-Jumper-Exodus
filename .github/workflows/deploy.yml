@@ -12,6 +12,8 @@ jobs:
     # only run action, if pushed on prod branch
     # change or remove according to your needs
     runs-on: ubuntu-20.04
+    container:
+        image: barichello/godot-ci:3.3.4
     steps:
       - name: Checkout source code
         uses: actions/checkout@v3
@@ -20,12 +22,10 @@ jobs:
       - name: Create export directory
         run: mkdir html5
 
-      # exports the game in html mode
-      # more info here https://github.com/dulvui/godot-html-export
       - name: Godot HTML5 export
-        uses: dulvui/godot-html-export@v0.0.2
-        with:
-          godot-version: 4.1
+        run: | 
+            mkdir html5
+            godot -v --export-release "HTML5" html5/index.html
 
       # uploads to itch.io
       # more info here https://github.com/dulvui/itchio-butler-upload
