@@ -1,8 +1,8 @@
 name: "Godot Export and Upload"
 on: push
-env:
-  GODOT_VERSION: 4.2
-  EXPORT_NAME: tile-jumper-exodus
+#env:
+#  GODOT_VERSION: 4.2
+#  EXPORT_NAME: tile-jumper-exodus
   
 jobs:
   export-web:
@@ -17,8 +17,8 @@ jobs:
         uses: firebelley/godot-export@v5.2.0
         with:
             # Defining all the required inputs
-            godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_linux.x86_64.zip
-            godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.0/Godot_v4.0-stable_export_templates.tpz
+            godot_executable_download_url: https://downloads.tuxfamily.org/godotengine/4.1/Godot_v4.1-stable_linux.x86_64.zip
+            godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1/Godot_v4.1-stable_export_templates.tpz
             relative_project_path: ./
             #archive_output: true
             
@@ -27,6 +27,6 @@ jobs:
         with:
             working-directory: "build/web"
             api-key: ${{ secrets.BUTLER_CREDENTIALS }}
-            user: maximmaeder
+            user: maximino
             game: tile-jumper-exodus
             channel: html5
