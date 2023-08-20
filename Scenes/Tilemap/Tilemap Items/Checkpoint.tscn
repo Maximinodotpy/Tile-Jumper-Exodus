@@ -9,10 +9,17 @@ script/source = "extends GroupedCollisionTilemapItem
 func entered():
 	print('Checkpoint')
 	EventBus.emitEvent('checkpoint')
+	
+	var tween = create_tween()
+	
+	tween.tween_property($\"Sprite2D\", 'scale', Vector2(1.5, 1.5), 0.25).set_ease(Tween.EASE_IN_OUT)
+	
+	tween.chain().tween_property($\"Sprite2D\", 'scale', Vector2.ONE, 0.25).set_ease(Tween.EASE_IN_OUT)
 "
 
 [node name="Grouped Collision Item" instance=ExtResource("1_nw7c7")]
 script = SubResource("GDScript_in4l7")
+id = "checkpoint"
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="1"]
 texture = ExtResource("2_24ded")

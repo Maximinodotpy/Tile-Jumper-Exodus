@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=113 format=3 uid="uid://cufwmfj0me60d"]
+[gd_resource type="TileSet" load_steps=115 format=3 uid="uid://cufwmfj0me60d"]
 
 [ext_resource type="PackedScene" uid="uid://bsi7eyvpqnntn" path="res://Scenes/Tilemap/Tilemap Items/Spike.tscn" id="1_jfvoo"]
 [ext_resource type="PackedScene" uid="uid://diusxc0542jmd" path="res://Scenes/Tilemap/Tilemap Items/Goal.tscn" id="2_7f4vx"]
@@ -30,6 +30,12 @@ tile_data = PackedInt32Array(589824, 65537, 3, 589825, 196609, 3, 589841, 0, 458
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_51jyq"]
 tile_data = PackedInt32Array(589824, 0, 458752, 589825, 0, 458752, 589826, 0, 458752, 4, 65537, 3, 5, 131073, 3, 6, 131073, 3, 7, 196609, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_1d6nm"]
+tile_data = PackedInt32Array(0, 1, 3, 18, 1, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_3xwc7"]
+tile_data = PackedInt32Array(131072, 1, 3, 16, 1, 3)
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_e4ulo"]
 resource_name = "Scenes"
@@ -1416,3 +1422,5 @@ pattern_3 = SubResource("TileMapPattern_n0sj5")
 pattern_4 = SubResource("TileMapPattern_on4pb")
 pattern_5 = SubResource("TileMapPattern_v6rty")
 pattern_6 = SubResource("TileMapPattern_51jyq")
+pattern_7 = SubResource("TileMapPattern_1d6nm")
+pattern_8 = SubResource("TileMapPattern_3xwc7")

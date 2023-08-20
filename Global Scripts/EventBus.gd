@@ -2,26 +2,27 @@ extends Node
 
 var events = {}
 
-func addEventListener(name: String, callable: Callable):
-	if not events.has(name):
-		events[name] = []
+func addEventListener(eventName: String, callable: Callable):
+	if not events.has(eventName):
+		events[eventName] = []
 
-	events[name].append(callable)
+	events[eventName].append(callable)
 	
-func removeEventListener(name: String, callable: Callable):
-	if events.has(name):
+func removeEventListener(eventName: String, callable: Callable):
+	print_debug('Removing event listener "' + eventName + '"')
+
+	if events.has(eventName):
 		var i = 0
-		for saved_callable in events[name]:
+		for saved_callable in events[eventName]:
 			if callable == saved_callable:
-				events[name].pop_at(i)
+				events[eventName].pop_at(i)
 			i += 1
 	
-func emitEvent(name: String, arguments: Dictionary = {}):
+func emitEvent(eventName: String, arguments: Dictionary = {}):
+	print_debug('Emitting event "' + eventName + '"')
 	
-	print('Event "' + name + '" called')
-	
-	if events.has(name):
-		for callable in events[name]:
+	if events.has(eventName):
+		for callable in events[eventName]:
 			print(callable)
 			
 			if callable.is_valid():
