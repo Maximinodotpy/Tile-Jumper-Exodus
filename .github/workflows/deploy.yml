@@ -52,7 +52,7 @@ jobs:
       - name: Upload to itch.io
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
-            working-directory: "build"
+            working-directory: "build/Tile Jumper Exodus"
             #working-directory: ${{ steps.export.outputs.archive_directory }}
             api-key: ${{ secrets.BUTLER_CREDENTIALS }}
             user: maximino
