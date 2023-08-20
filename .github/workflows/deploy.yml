@@ -9,8 +9,23 @@ jobs:
     name: Web Export
     runs-on: ubuntu-20.04
     steps:
+      - id: commit-type
+        name: Check Commit Type
+        uses: gsactions/commit-message-checker@v2
+        with:
+          pattern: '^\d*$'
+          error: 'The commit message does not look like a version number. Please use semantic versioning (https://semver.org/).'
+
       - name: Checkout
         uses: actions/checkout@v2
+
+      - name: Find and Replace Version
+        uses: jacobtomlinson/gha-find-replace@v3
+        with:
+          find: "__TJE_VERSION__"
+          replace: ${{ github.event.head_commit.message }}
+          regex: false
+
       - name: export game
         id: export
         # Use latest version (see releases for all versions)
