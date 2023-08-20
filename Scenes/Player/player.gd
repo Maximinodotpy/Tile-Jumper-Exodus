@@ -43,7 +43,7 @@ func checkpoint(_args = {}):
 
 func _physics_process(delta):
 	
-	$"PointLight2D".visible = root.isDark
+	$"Sprite/PointLight2D".visible = root.isDark
 	
 	delta *= 60
 	

@@ -159,16 +159,31 @@ frame = 45
 script = SubResource("GDScript_ff0jw")
 
 [node name="restartLabel" type="Label" parent="Sprite"]
-offset_left = -108.0
-offset_top = -49.8788
-offset_right = 108.0
-offset_bottom = -19.8788
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -1.244
+anchor_right = 0.5
+anchor_bottom = -1.244
+offset_left = -118.0
+offset_top = -24.9988
+offset_right = 98.0
+offset_bottom = 5.0012
 text = "Press R to Restart"
 
 [node name="TouchScreenButton" type="TouchScreenButton" parent="Sprite/restartLabel"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-7.62939e-06, -14.7851)
 scale = Vector2(5, 0.710823)
+
+[node name="PointLight2D" type="PointLight2D" parent="Sprite"]
+visible = false
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0, 0, 0, 0)
+scale = Vector2(1.12, 1.12)
+range_layer_min = -200
+range_layer_max = 200
+shadow_enabled = true
+texture = ExtResource("3_f006i")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 ignore_rotation = false
@@ -230,16 +245,6 @@ shape = SubResource("RectangleShape2D_7u88j")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = SubResource("NoiseTexture2D_py3m8")
-
-[node name="PointLight2D" type="PointLight2D" parent="."]
-visible = false
-modulate = Color(1, 1, 1, 0)
-self_modulate = Color(0, 0, 0, 0)
-scale = Vector2(1.12, 1.12)
-range_layer_min = -200
-range_layer_max = 200
-shadow_enabled = true
-texture = ExtResource("3_f006i")
 
 [connection signal="pressed" from="Sprite/restartLabel/TouchScreenButton" to="." method="specialAction" binds= ["spikes"]]
 [connection signal="timeout" from="holdMaxSpeed" to="." method="_on_holdMaxSpeed_timeout"]
