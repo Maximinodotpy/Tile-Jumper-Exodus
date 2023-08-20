@@ -46,15 +46,12 @@ jobs:
       - name: test
         run: |
           ls
-
-      - name: test
-        run: |
-          ls
             
       - name: Upload to itch.io
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
-            working-directory: "build/web/web.zip"
+            #working-directory: "build/web/web.zip"
+            working-directory: ${{ steps.export.outputs.archive_directory }}
             api-key: ${{ secrets.BUTLER_CREDENTIALS }}
             user: maximino
             game: tile-jumper-exodus
