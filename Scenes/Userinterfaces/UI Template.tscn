@@ -63,7 +63,9 @@ layout_mode = 2
 text = "Home"
 scene = "res://Scenes/Userinterfaces/Main.tscn"
 
-[node name="version" type="Label" parent="m/v/bottom_line"]
+[node name="version" type="LinkButton" parent="m/v/bottom_line"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Version __TJE_VERSION__"
+underline = 1
+uri = "https://github.com/Maximinodotpy/Tile-Jumper-Exodus"

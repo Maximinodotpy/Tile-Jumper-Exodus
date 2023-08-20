@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=110 format=3 uid="uid://cufwmfj0me60d"]
+[gd_resource type="TileSet" load_steps=113 format=3 uid="uid://cufwmfj0me60d"]
 
 [ext_resource type="PackedScene" uid="uid://bsi7eyvpqnntn" path="res://Scenes/Tilemap/Tilemap Items/Spike.tscn" id="1_jfvoo"]
 [ext_resource type="PackedScene" uid="uid://diusxc0542jmd" path="res://Scenes/Tilemap/Tilemap Items/Goal.tscn" id="2_7f4vx"]
@@ -8,9 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://js3kqnt10c66" path="res://Scenes/Tilemap/Tilemap Items/Trampolin.tscn" id="3_m1j82"]
 [ext_resource type="PackedScene" uid="uid://v8k33i3c0fro" path="res://Scenes/Tilemap/Tilemap Items/Temporary Block.tscn" id="6_judd5"]
 [ext_resource type="PackedScene" uid="uid://buxn2d123oeah" path="res://Scenes/Tilemap/Tilemap Items/Jumppad.tscn" id="7_f074o"]
-
-[sub_resource type="TileMapPattern" id="TileMapPattern_vb165"]
-tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0)
+[ext_resource type="PackedScene" uid="uid://be7xaq4clotls" path="res://Scenes/Tilemap/Tilemap Items/Dark Mode Toggler.tscn" id="8_54t22"]
 
 [sub_resource type="TileMapPattern" id="TileMapPattern_eto3y"]
 tile_data = PackedInt32Array(0, 1, 9, 65536, 1, 9, 131072, 1, 9, 196608, 1, 9, 4, 1, 9, 65540, 1, 9, 131076, 1, 9, 196612, 1, 9, 8, 1, 9, 65544, 1, 9, 131080, 1, 9, 196616, 1, 9)
@@ -24,6 +22,15 @@ tile_data = PackedInt32Array(0, 65537, 3, 1, 196609, 3, 131088, 65537, 3, 131089
 [sub_resource type="TileMapPattern" id="TileMapPattern_n0sj5"]
 tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 2, 9, 65537, 3, 327689, 65537, 3, 10, 196609, 3, 327690, 196609, 3)
 
+[sub_resource type="TileMapPattern" id="TileMapPattern_on4pb"]
+tile_data = PackedInt32Array(589824, 0, 458752, 655360, 65537, 3, 589825, 0, 458752, 655361, 196609, 3, 17, 65537, 3, 18, 196609, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_v6rty"]
+tile_data = PackedInt32Array(589824, 65537, 3, 589825, 196609, 3, 589841, 0, 458752, 655377, 65537, 3, 589842, 0, 458752, 655378, 196609, 3, 34, 65537, 3, 35, 196609, 3)
+
+[sub_resource type="TileMapPattern" id="TileMapPattern_51jyq"]
+tile_data = PackedInt32Array(589824, 0, 458752, 589825, 0, 458752, 589826, 0, 458752, 4, 65537, 3, 5, 131073, 3, 6, 131073, 3, 7, 196609, 3)
+
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_e4ulo"]
 resource_name = "Scenes"
 scenes/1/scene = ExtResource("1_jfvoo")
@@ -33,6 +40,7 @@ scenes/4/scene = ExtResource("3_2ofh2")
 scenes/5/scene = ExtResource("2_fb878")
 scenes/6/scene = ExtResource("6_judd5")
 scenes/7/scene = ExtResource("7_f074o")
+scenes/8/scene = ExtResource("8_54t22")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_4epue"]
 polygon = PackedVector2Array(-6, -6, 6, -6, 6, 10, -6, 10)
@@ -1401,8 +1409,10 @@ terrain_set_0/terrain_1/name = "Blue"
 terrain_set_0/terrain_1/color = Color(0.203922, 0.341176, 0.890196, 1)
 sources/1 = SubResource("TileSetAtlasSource_luf2d")
 sources/0 = SubResource("TileSetScenesCollectionSource_e4ulo")
-pattern_0 = SubResource("TileMapPattern_vb165")
-pattern_1 = SubResource("TileMapPattern_eto3y")
-pattern_2 = SubResource("TileMapPattern_4vgmq")
-pattern_3 = SubResource("TileMapPattern_yirs1")
-pattern_4 = SubResource("TileMapPattern_n0sj5")
+pattern_0 = SubResource("TileMapPattern_eto3y")
+pattern_1 = SubResource("TileMapPattern_4vgmq")
+pattern_2 = SubResource("TileMapPattern_yirs1")
+pattern_3 = SubResource("TileMapPattern_n0sj5")
+pattern_4 = SubResource("TileMapPattern_on4pb")
+pattern_5 = SubResource("TileMapPattern_v6rty")
+pattern_6 = SubResource("TileMapPattern_51jyq")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://be7xaq4clotls"]
+
+[ext_resource type="PackedScene" uid="uid://cffxvunwl3qd1" path="res://Scenes/Tilemap/Tilemap Items/Templates/Grouped Collision Item.tscn" id="1_doq7d"]
+
+[sub_resource type="GDScript" id="GDScript_6oue7"]
+script/source = "extends GroupedCollisionTilemapItem
+
+
+func entered():
+	EventBus.emitEvent('toggle_darkness')
+"
+
+[node name="Grouped Collision Item" instance=ExtResource("1_doq7d")]
+script = SubResource("GDScript_6oue7")
+id = "dark_mode_toggler"
