@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cu3g5sherqbgh" path="res://Scenes/Player/lightcone.png" id="3_f006i"]
 
 [sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(20, 18.9782)
 
 [sub_resource type="Gradient" id="Gradient_byvpf"]
 offsets = PackedFloat32Array(0, 0.733333, 0.909804)
@@ -126,6 +127,7 @@ collision_layer = 3
 script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.510908)
 shape = SubResource("1")
 
 [node name="ground_punch_particles" type="CPUParticles2D" parent="."]
