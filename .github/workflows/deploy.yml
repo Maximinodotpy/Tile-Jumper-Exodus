@@ -42,7 +42,7 @@ jobs:
             godot_export_templates_download_url: https://downloads.tuxfamily.org/godotengine/4.1.1/Godot_v4.1.1-stable_export_templates.tpz
             relative_project_path: ./
             relative_export_path: ./build # move export output to this directory relative to git root
-            archive_output: true
+            archive_output: false
 
       - name: test
         run: |
@@ -52,8 +52,8 @@ jobs:
       - name: Upload to itch.io
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
-            #working-directory: "build/web/web.zip"
-            working-directory: ${{ steps.export.outputs.archive_directory }}
+            working-directory: "build"
+            #working-directory: ${{ steps.export.outputs.archive_directory }}
             api-key: ${{ secrets.BUTLER_CREDENTIALS }}
             user: maximino
             game: tile-jumper-exodus
