@@ -21,10 +21,17 @@ jobs:
 
       - name: Find and Replace Version
         uses: jacobtomlinson/gha-find-replace@v3
+        id: find-replace
         with:
           find: "__TJE_VERSION__"
           replace: ${{ github.event.head_commit.message }}
           regex: false
+          include: "Scenes/Userinterfaces"
+
+      - name: Show Modified Files where Version was replaced
+        run: |
+          git status
+          git diff
 
       - name: export game
         id: export
