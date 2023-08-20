@@ -37,18 +37,18 @@ jobs:
             relative_project_path: ./
             archive_output: false
 
-      - name: test
-        run: |
-          ls
-          cd build
-          ls
-          cd web
-          ls
+#      - name: test
+#        run: |
+#          ls
+#          cd build
+#          ls
+#          cd web
+#          ls
             
       - name: Upload to itch.io
         uses: dulvui/itchio-butler-upload@v0.0.1
         with:
-            working-directory: "build/web"
+            # working-directory: "build/web"
             api-key: ${{ secrets.BUTLER_CREDENTIALS }}
             user: maximino
             game: tile-jumper-exodus
