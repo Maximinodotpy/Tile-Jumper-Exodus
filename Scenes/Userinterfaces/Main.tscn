@@ -30,12 +30,17 @@ layout_mode = 2
 text = "Levels"
 scene = "res://Scenes/Userinterfaces/Levels.tscn"
 
-[node name="Scene Swither Button2" parent="m/v/container/h/Options" index="1" instance=ExtResource("2_p5cuy")]
+[node name="Scene Swither Button3" parent="m/v/container/h/Options" index="1" instance=ExtResource("2_p5cuy")]
+layout_mode = 2
+text = "Infinite Mode"
+scene = "res://Scenes/Infinite Mode/Infinite Mode.tscn"
+
+[node name="Scene Swither Button2" parent="m/v/container/h/Options" index="2" instance=ExtResource("2_p5cuy")]
 visible = false
 layout_mode = 2
 text = "Credits"
 
-[node name="LinkButton" type="LinkButton" parent="m/v/container/h/Options" index="2"]
+[node name="LinkButton" type="LinkButton" parent="m/v/container/h/Options" index="3"]
 layout_mode = 2
 size_flags_vertical = 10
 text = "maximmaeder.com"

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://b61jggsgiixt"]
+
+[ext_resource type="PackedScene" uid="uid://buhaqx55xwv6q" path="res://Scenes/Levels/Level Template.tscn" id="1_x1hgj"]
+
+[node name="Level" instance=ExtResource("1_x1hgj")]
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(131072, 196609, 3, 196607, 65537, 3)
+
+[node name="time" parent="ui/ui/v/top" index="0"]
+visible = false
