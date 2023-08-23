@@ -31,6 +31,7 @@ func _ready():
 	EventBus.addEventListener('die', die)
 	EventBus.addEventListener('jumppad', jumppad)
 	
+	
 func invert_gravity(_args = {}):
 	gravityDirection *= -1
 
