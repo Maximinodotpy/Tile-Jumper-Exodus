@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=3 uid="uid://d2r00p8icu1co"]
 
-[ext_resource type="PackedScene" uid="uid://buhaqx55xwv6q" path="res://Scenes/Levels/Level Template.tscn" id="1_4gtoj"]
+[ext_resource type="PackedScene" uid="uid://buhaqx55xwv6q" path="res://Scenes/Levels/Level Template.tscn" id="1_prtm7"]
 
-[node name="Level" instance=ExtResource("1_4gtoj")]
+[node name="Level" instance=ExtResource("1_prtm7")]
 isDark = true
 
 [node name="TileMap" parent="." index="0"]
