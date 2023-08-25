@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cu3g5sherqbgh" path="res://Scenes/Player/lightcone.png" id="3_f006i"]
 
 [sub_resource type="RectangleShape2D" id="1"]
-size = Vector2(20, 18.9782)
+size = Vector2(19, 18.978)
 
 [sub_resource type="Gradient" id="Gradient_byvpf"]
 offsets = PackedFloat32Array(0, 0.733333, 0.909804)
