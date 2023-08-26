@@ -13,57 +13,41 @@ const COYOTE_TIME = 0.015
 var justWallJumped = false
 var justJumped = false
 var lastPosition
-var lastRotation = Vector2.DOWN
 
 @onready var root = Helpers.getSceneRoot()
 
 var was_just_in_air = false
 
-var gravityDirection = Vector2.DOWN
-
 func _ready():
 	lastPosition = position
 	$player.play("appear")
-	
-	EventBus.addEventListener('invert_gravity', invert_gravity)
+
 	EventBus.addEventListener('trampolin', trampolin)
 	EventBus.addEventListener('checkpoint', checkpoint)
 	EventBus.addEventListener('die', die)
 	EventBus.addEventListener('jumppad', jumppad)
-	
-	
-func invert_gravity(_args = {}):
-	gravityDirection *= -1
 
 func trampolin(_args = {}):
 	velocity *= -1
 	
 func checkpoint(_args = {}):
 	lastPosition = position
-	lastRotation = gravityDirection
 
 func _physics_process(delta):
-	
 	$"Sprite/PointLight2D".visible = root.isDark
 	
 	delta *= 60
 	
-	rotation_degrees = rad_to_deg(gravityDirection.angle()) - 90
-	up_direction = gravityDirection * -1
+	rotation_degrees = rad_to_deg(root.gravityDirection.angle()) - 90
+	up_direction = root.gravityDirection * -1
 	
 	$"Sprite/restartLabel".visible = getCrossAxis() == MAX_DOWN_VEL and not root.isFinished
 
+	if root.isShellVisible:
+		return
+
 	if Input.is_action_just_pressed('r') and not root.isFinished:
 		EventBus.emitEvent('die')
-#		match gravityDirection:
-#			Vector2.DOWN:
-#				gravityDirection = Vector2.LEFT
-#			Vector2.LEFT: 
-#				gravityDirection = Vector2.UP
-#			Vector2.UP:
-#				gravityDirection = Vector2.RIGHT
-#			Vector2.RIGHT: 
-#				gravityDirection = Vector2.DOWN
 	
 	if is_on_floor():
 		$coyoteJump.stop()
@@ -120,7 +104,6 @@ func jumppad(_args):
 func die(_args = {}):
 	position = lastPosition
 	velocity = Vector2.ZERO
-	gravityDirection = lastRotation
 	$player.play("appear")
 
 func _input(event):
@@ -139,23 +122,23 @@ func _on_holdMaxSpeed_timeout():
 # Axis Functions, used for Rotation
 # Main Axis = Side to Side Movement
 func getMainAxis():
-	if gravityDirection == Vector2.DOWN:
+	if root.gravityDirection == Vector2.DOWN:
 		return velocity.x
-	elif gravityDirection == Vector2.UP:
+	elif root.gravityDirection == Vector2.UP:
 		return -velocity.x
-	elif gravityDirection == Vector2.LEFT:
+	elif root.gravityDirection == Vector2.LEFT:
 		return velocity.y
-	elif gravityDirection == Vector2.RIGHT:
+	elif root.gravityDirection == Vector2.RIGHT:
 		return -velocity.y
 
 func setMainAxis(number: float):
-	if gravityDirection == Vector2.DOWN:
+	if root.gravityDirection == Vector2.DOWN:
 		velocity.x = number
-	elif gravityDirection == Vector2.UP:
+	elif root.gravityDirection == Vector2.UP:
 		velocity.x = -number
-	elif gravityDirection == Vector2.LEFT:
+	elif root.gravityDirection == Vector2.LEFT:
 		velocity.y = number
-	elif gravityDirection == Vector2.RIGHT:
+	elif root.gravityDirection == Vector2.RIGHT:
 		velocity.y = -number
 
 func addToMainAxis(number: float):
@@ -163,23 +146,23 @@ func addToMainAxis(number: float):
 
 
 func getCrossAxis():
-	if gravityDirection == Vector2.DOWN:
+	if root.gravityDirection == Vector2.DOWN:
 		return velocity.y
-	elif gravityDirection == Vector2.UP:
+	elif root.gravityDirection == Vector2.UP:
 		return -velocity.y
-	elif gravityDirection == Vector2.LEFT:
+	elif root.gravityDirection == Vector2.LEFT:
 		return -velocity.x
-	elif gravityDirection == Vector2.RIGHT:
+	elif root.gravityDirection == Vector2.RIGHT:
 		return velocity.x
 	
 func setCrossAxis(number: float):
-	if gravityDirection == Vector2.DOWN:
+	if root.gravityDirection == Vector2.DOWN:
 		velocity.y = number
-	elif gravityDirection == Vector2.UP:
+	elif root.gravityDirection == Vector2.UP:
 		velocity.y = -number
-	elif gravityDirection == Vector2.LEFT:
+	elif root.gravityDirection == Vector2.LEFT:
 		velocity.x = -number
-	elif gravityDirection == Vector2.RIGHT:
+	elif root.gravityDirection == Vector2.RIGHT:
 		velocity.x = number
 
 func addToCrossAxis(number: float):

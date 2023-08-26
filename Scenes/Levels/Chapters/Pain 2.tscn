@@ -11,3 +11,9 @@ layer_0/tile_data = PackedInt32Array(131071, 655361, 8, 65536, 720897, 8, 131072
 
 [node name="player" parent="." index="1"]
 position = Vector2(-32, -1)
+
+[node name="v" parent="ui/passed_menu" index="1"]
+offset_left = 324.0
+offset_top = 178.0
+offset_right = 636.0
+offset_bottom = 435.0

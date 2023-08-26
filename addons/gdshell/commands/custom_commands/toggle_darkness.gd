@@ -5,12 +5,11 @@ extends GDShellCommand
 func _init():
 
 	COMMAND_AUTO_ALIASES = {
-		"ig": "invert_gravity", # `sayHelloAlias` is alias to `sayHello`
+		"td": "toggle_darkness", # `sayHelloAlias` is alias to `sayHello`
   	}
 
 
 func _main(argv, data):
-	output("Inverting Gravity!")
-	EventBus.emitEvent('invert_gravity')
-		
+	EventBus.emitEvent('toggle_darkness')
+	
 	return {}

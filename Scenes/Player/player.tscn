@@ -127,6 +127,7 @@ collision_layer = 3
 script = ExtResource("2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 0.510908)
 shape = SubResource("1")
 
@@ -238,6 +239,7 @@ passby_press = true
 action = "d"
 
 [node name="falling_effect_area" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="falling_effect_area"]
 shape = SubResource("RectangleShape2D_7u88j")

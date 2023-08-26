@@ -22,8 +22,6 @@ var gravityDirection = Vector2.DOWN
 
 var preGravityDirection = Vector2.DOWN
 
-var isShellVisible = false
-
 const DARK_SHADE = 0.15
 const DARK_MODULATION_COLOR = Color(DARK_SHADE, DARK_SHADE, DARK_SHADE)
 
@@ -36,34 +34,9 @@ func _ready():
 	EventBus.addEventListener('toggle_darkness', toggle_darkness)
 	EventBus.addEventListener('invert_gravity', invert_gravity)
 	
-	EventBus.addEventListener('rotate_right', rotate_right)
-	EventBus.addEventListener('rotate_left', rotate_left)
-	
 	# Calling this function Ones so the inital Dark Mode is saved
 	entered_checkpoint()
 
-
-func rotate_right(args = {}):
-	match gravityDirection:
-		Vector2.DOWN:
-			gravityDirection = Vector2.LEFT
-		Vector2.LEFT: 
-			gravityDirection = Vector2.UP
-		Vector2.UP:
-			gravityDirection = Vector2.RIGHT
-		Vector2.RIGHT: 
-			gravityDirection = Vector2.DOWN
-
-func rotate_left(args = {}):
-	match gravityDirection:
-		Vector2.DOWN:
-			gravityDirection = Vector2.RIGHT
-		Vector2.LEFT: 
-			gravityDirection = Vector2.DOWN
-		Vector2.UP:
-			gravityDirection = Vector2.LEFT
-		Vector2.RIGHT: 
-			gravityDirection = Vector2.UP
 
 func invert_gravity(_args = {}):
 	gravityDirection *= -1
@@ -98,10 +71,7 @@ func goal_entered(args = {}):
 
 func _process(delta):
 	
-	if Input.is_action_just_pressed(\"gdshell_toggle_ui\"):
-		isShellVisible = !isShellVisible
-	
-	if not isFinished and not isShellVisible:
+	if not isFinished:
 		timePassed += delta
 	
 	if isDark:
@@ -165,11 +135,7 @@ func _process(delta):
 	$\"passed_menu/v/m/VBoxContainer/final_time\".text = formattedTime
 	
 	if Input.is_action_just_pressed(\"ui_cancel\"):
-		if root.isShellVisible:
-			root.isShellVisible = false
-			GDShell.get_ui_handler().visible = false
-		else:
-			get_tree().paused = !get_tree().paused
+		get_tree().paused = !get_tree().paused
 
 
 func _on_pause_button_pressed():
