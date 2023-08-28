@@ -12,5 +12,5 @@ func _init():
 func _main(argv, data):
 	output("Inverting Gravity!")
 	EventBus.emitEvent('invert_gravity')
-		
+
 	return {}

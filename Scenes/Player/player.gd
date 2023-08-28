@@ -29,18 +29,18 @@ func _ready():
 
 func trampolin(_args = {}):
 	velocity *= -1
-	
+
 func checkpoint(_args = {}):
 	lastPosition = position
 
 func _physics_process(delta):
 	$"Sprite/PointLight2D".visible = root.isDark
-	
+
 	delta *= 60
-	
+
 	rotation_degrees = rad_to_deg(root.gravityDirection.angle()) - 90
 	up_direction = root.gravityDirection * -1
-	
+
 	$"Sprite/restartLabel".visible = getCrossAxis() == MAX_DOWN_VEL and not root.isFinished
 
 	if root.isShellVisible:
@@ -48,52 +48,52 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed('r') and not root.isFinished:
 		EventBus.emitEvent('die')
-	
+
 	if is_on_floor():
 		$coyoteJump.stop()
 		$coyoteJump.start(COYOTE_TIME)
-	
+
 		if was_just_in_air:
 			$ground_punch_particles.emitting = true
-		
+
 		was_just_in_air = false
-	
+
 	if not is_on_floor():
 		was_just_in_air = true
-	
+
 	if Input.is_action_pressed("space") and not root.isFinished:
 		if is_on_floor() or $coyoteJump.time_left > 0:
 			$coyoteJump.stop()
 			setCrossAxis(-JUMP_POWER)
 			justJumped = false
 #			SoundManager.play('jump')
-	
+
 	if Input.is_action_just_pressed("space") and not is_on_floor():
 		if $RayCastLeft.is_colliding() or $RayCastRight.is_colliding():
 			setCrossAxis(-JUMP_POWER * 0.8)
 			justWallJumped = true
 			$holdMaxSpeed.start(0.225)
 #			SoundManager.play('jump')
-		
+
 		if $RayCastLeft.is_colliding():
 			setMainAxis(WALL_JUMP_POWER)
 		if $RayCastRight.is_colliding():
 			setMainAxis(-WALL_JUMP_POWER)
-	
+
 	if not justWallJumped and not root.isFinished:
 		if Input.is_action_pressed("a"):
 			addToMainAxis(-SIDE_ACCEL)
 		elif Input.is_action_pressed("d"):
 			addToMainAxis(SIDE_ACCEL)
-	
+
 	if not justWallJumped:
 		setMainAxis(lerpf(getMainAxis(), 0.0, 0.3))
 
 	addToCrossAxis(GRAVITY * delta)
-	
+
 	if MAX_DOWN_VEL < getCrossAxis():
 		setCrossAxis(MAX_DOWN_VEL)
-	
+
 	move_and_slide()
 
 
@@ -112,9 +112,12 @@ func _input(event):
 			$Camera2D.zoom += Vector2(0.1, 0.1)
 		elif event.button_index == 5:
 			$Camera2D.zoom -= Vector2(0.1, 0.1)
-		
-		$Camera2D.zoom.x = clampf($Camera2D.zoom.x, 0.5, 3)
-		$Camera2D.zoom.y = clampf($Camera2D.zoom.y, 0.5, 3)
+
+		const MAX_ZOOM = 5
+		const MIN_ZOOM = 0.5
+
+		$Camera2D.zoom.x = clampf($Camera2D.zoom.x, MIN_ZOOM, MAX_ZOOM)
+		$Camera2D.zoom.y = clampf($Camera2D.zoom.y, MIN_ZOOM, MAX_ZOOM)
 
 func _on_holdMaxSpeed_timeout():
 	justWallJumped = false
@@ -154,7 +157,7 @@ func getCrossAxis():
 		return -velocity.x
 	elif root.gravityDirection == Vector2.RIGHT:
 		return velocity.x
-	
+
 func setCrossAxis(number: float):
 	if root.gravityDirection == Vector2.DOWN:
 		velocity.y = number
