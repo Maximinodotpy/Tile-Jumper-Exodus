@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://2ya36eieot7f"]
+
+[ext_resource type="PackedScene" uid="uid://gdhtn2t8y77b" path="res://Scenes/Infinite Mode/Parts/Part Template.tscn" id="1_08xr3"]
+
+[node name="Part Template" instance=ExtResource("1_08xr3")]
+
+[node name="endoffset" parent="." index="0"]
+position = Vector2(680, 0)
+
+[node name="TileMap" parent="." index="1"]
+layer_0/tile_data = PackedInt32Array(0, 196609, 3, 17, 196609, 3, 34, 196609, 3, 65535, 65537, 3, 16, 65537, 3, 33, 65537, 3)

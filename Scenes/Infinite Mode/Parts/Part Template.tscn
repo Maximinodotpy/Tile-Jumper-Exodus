@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://gdhtn2t8y77b"]
+
+[ext_resource type="TileSet" uid="uid://cufwmfj0me60d" path="res://Scenes/Tilemap/Images/tileset.tres" id="1_bv83u"]
+
+[node name="Part Template" type="Node2D"]
+
+[node name="endoffset" type="Marker2D" parent="."]
+position = Vector2(380, 0)
+gizmo_extents = 30.0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("1_bv83u")
+format = 2
