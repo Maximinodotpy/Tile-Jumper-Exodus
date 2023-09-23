@@ -17,12 +17,12 @@ func _on_area_2d_body_entered(body):
 		entered()
 
 	collision_count += 1
-	
+
 	for node in get_tree().get_nodes_in_group(id):
 		node.collision_count = collision_count
 
 func _on_area_2d_body_exited(body):
 	collision_count -= 1
-	
+
 	for node in get_tree().get_nodes_in_group(id):
 		node.collision_count = collision_count

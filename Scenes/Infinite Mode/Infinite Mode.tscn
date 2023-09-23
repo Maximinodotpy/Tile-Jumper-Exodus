@@ -11,7 +11,11 @@ layer_0/tile_data = PackedInt32Array(65535, 655361, 0, 131071, 655361, 1, 65536,
 [node name="player" parent="." index="1"]
 position = Vector2(0, -10)
 
-[node name="time" parent="ui/ui/v/top" index="0"]
+[node name="distance" type="Label" parent="ui/ui/v/top" index="0"]
+layout_mode = 2
+text = "10 Blocks"
+
+[node name="time" parent="ui/ui/v/top" index="1"]
 visible = false
 
 [node name="im_manager" type="Node2D" parent="." index="5"]

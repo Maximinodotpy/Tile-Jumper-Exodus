@@ -9,11 +9,13 @@ var parts = [
 	preload("res://Scenes/Infinite Mode/Parts/part_2.tscn"),
 	preload("res://Scenes/Infinite Mode/Parts/part_3.tscn"),
 	preload("res://Scenes/Infinite Mode/Parts/part_4.tscn"),
+	preload('res://Scenes/Infinite Mode/Parts/part_5.tscn'),
 ]
 
 var offset = Vector2(100, 0)
 
 @onready var player = $"../player"
+@onready var distanceLabel = $"../ui/ui/v/top/distance"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +26,7 @@ func _ready():
 		addPart()
 
 func restart(args = {}):
-	offset = Vector2.ZERO
+	offset = Vector2(100, 0)
 
 	for i in $"parts".get_children():
 		i.queue_free()
@@ -37,6 +39,8 @@ func restart(args = {}):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	deathWall.position.x += 2
+
+	distanceLabel.text = str(roundi(player.position.x / 20))
 
 	var distance = offset.x - player.position.x
 

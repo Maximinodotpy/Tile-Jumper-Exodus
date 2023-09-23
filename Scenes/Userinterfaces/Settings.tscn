@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://4urod2cxbo1r"]
+
+[ext_resource type="PackedScene" uid="uid://d12o3ubnrj0r0" path="res://Scenes/Userinterfaces/UI Template.tscn" id="1_5xne3"]
+
+[node name="UI Template" instance=ExtResource("1_5xne3")]
+
+[node name="Main Label" parent="m/v/VBoxContainer" index="0"]
+text = "Settings"
+
+[node name="Seconday Label" parent="m/v/VBoxContainer" index="1"]
+visible = false
