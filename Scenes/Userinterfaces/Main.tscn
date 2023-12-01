@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://cnooyf65sf4m7"]
+[gd_scene load_steps=4 format=3 uid="uid://cnooyf65sf4m7"]
 
 [ext_resource type="PackedScene" uid="uid://d12o3ubnrj0r0" path="res://Scenes/Userinterfaces/UI Template.tscn" id="1_b4ktm"]
 [ext_resource type="PackedScene" uid="uid://dcdae13hoit18" path="res://Scenes/Userinterfaces/Scene Swither Button.tscn" id="2_p5cuy"]
 
+[sub_resource type="GDScript" id="GDScript_hwsrg"]
+script/source = "extends Control
+
+func _ready():
+
+	# Ensuring that the Settings File Exists
+	Helpers.ensureFileExists('user://settings.cfg')
+"
+
 [node name="UI Template" instance=ExtResource("1_b4ktm")]
+script = SubResource("GDScript_hwsrg")
 
 [node name="Main Label" parent="m/v/VBoxContainer" index="0"]
 text = "Tile Jumper Exodus"
@@ -36,7 +46,6 @@ text = "Infinite Mode"
 scene = "res://Scenes/Infinite Mode/Infinite Mode.tscn"
 
 [node name="Scene Swither Button4" parent="m/v/container/h/Options" index="2" instance=ExtResource("2_p5cuy")]
-visible = false
 layout_mode = 2
 text = "Settings"
 scene = "res://Scenes/Userinterfaces/Settings.tscn"

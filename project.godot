@@ -12,12 +12,12 @@ config_version=5
 
 config/name="Tile Jumper Exodus"
 run/main_scene="res://Scenes/Userinterfaces/Main.tscn"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 
 [autoload]
 
-EventBus="*res://Global Scripts/EventBus.gd"
-Helpers="*res://Global Scripts/Helpers.gd"
+EventBus="*res://addons/godot_helpers/Singletons/EventBus.gd"
+Helpers="*res://addons/godot_helpers/Singletons/Helpers.gd"
 Global="*res://Global Scripts/Global.gd"
 GDShell="*res://addons/gdshell/scripts/gdshell_main.gd"
 
@@ -35,7 +35,7 @@ movie_writer/movie_file="C:/Users/Maxim/OneDrive/Programming/Tile Jumper Exodus/
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gdshell/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdshell/plugin.cfg", "res://addons/godot_helpers/plugin.cfg")
 
 [gui]
 

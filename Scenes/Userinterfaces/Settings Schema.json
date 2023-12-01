@@ -1,0 +1,10 @@
+{
+	"Game": [
+		{
+			"name": "Enable Checkpoints",
+			"description": "",
+			"type": "bool",
+			"default": true
+		}
+	]
+}

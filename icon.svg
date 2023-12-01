@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 28.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Ebene_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#899BD1;}
+	.st1{fill:#7888B8;}
+	.st2{fill:#9DB1F0;}
+	.st3{opacity:0.75;}
+	.st4{fill:#9BA5C4;}
+	.st5{font-family:'SegoeUIBlack';}
+	.st6{font-size:28.4377px;}
+	.st7{fill:#D6E0FF;}
+</style>
+<g>
+	<rect x="10.1" y="40.7" class="st0" width="82.4" height="77.2"/>
+	<polygon class="st1" points="117.9,87.3 92.5,117.9 92.5,40.7 117.9,10.1 	"/>
+	<polygon class="st2" points="117.9,10.1 35.5,10.1 10.1,40.7 92.5,40.7 	"/>
+</g>
+<g>
+	<g class="st3">
+		<text transform="matrix(1 0 0 1 21.5806 56.4565)"><tspan x="0" y="0" class="st4 st5 st6">Godot</tspan><tspan x="-10.5" y="34.1" class="st4 st5 st6">Helpers</tspan></text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 20.5806 55.4565)"><tspan x="0" y="0" class="st7 st5 st6">Godot</tspan><tspan x="-10.5" y="34.1" class="st7 st5 st6">Helpers</tspan></text>
+	</g>
+</g>
+</svg>

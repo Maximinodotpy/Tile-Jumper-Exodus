@@ -1,13 +1,17 @@
 extends Node
 
+## This variable holds the Event connections
+## NEVER CHANGE THIS VARIABLE DIRECTLY USE THE API FUNCTIONS
 var events = {}
 
+## Adds an event listener to the given Event Name
 func addEventListener(eventName: String, callable: Callable):
 	if not events.has(eventName):
 		events[eventName] = []
 
 	events[eventName].append(callable)
 
+## Removes and event Listener from the given Event Name
 func removeEventListener(eventName: String, callable: Callable):
 	print_debug('Removing event listener "' + eventName + '"')
 
@@ -18,6 +22,8 @@ func removeEventListener(eventName: String, callable: Callable):
 				events[eventName].pop_at(i)
 			i += 1
 
+## Emits the given Event Name with the Arguments dictionary.
+## Will remove Invalid Callables automatically upon encountering them.
 func emitEvent(eventName: String, arguments: Dictionary = {}):
 	print_debug('Emitting event "' + eventName + '"')
 
@@ -27,3 +33,5 @@ func emitEvent(eventName: String, arguments: Dictionary = {}):
 
 			if callable.is_valid():
 				callable.call(arguments)
+			else:
+				removeEventListener(eventName, callable)
