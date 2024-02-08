@@ -7,8 +7,6 @@ script/source = "extends Control
 
 var scene_switcher = preload('res://Scenes/Userinterfaces/Scene Swither Button.tscn')
 
-var levels = []
-
 func _ready():
 	for level in Global.levels:
 		var button: Button = scene_switcher.instantiate()
